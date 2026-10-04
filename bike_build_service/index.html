@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Удалённая сборка велосипедов, ремонт бюджетного уровня, апгрейд обвеса, диагностика и консультации.">
+  <title>BIKE LAB — сборка, ремонт и апгрейд велосипедов</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0d0b; --panel:#111612; --panel2:#171d18; --text:#f4f7f3; --muted:#9aa69d;
+      --line:#293229; --accent:#b7ff38; --accent2:#d8ff8e; --danger:#ff6b6b;
+      --max:1180px; --radius:24px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(circle at 80% 0%,#1b2719 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+    .wrap{width:min(var(--max),calc(100% - 32px));margin:auto}
+    .nav{position:sticky;top:0;z-index:20;background:rgba(10,13,11,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:900;letter-spacing:-.04em;font-size:21px}.brand span{color:var(--accent)}
+    .links{display:flex;gap:24px;color:#b8c1ba;font-size:14px;font-weight:600}.links a:hover{color:var(--accent)}
+    .navcta{display:flex;gap:10px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;border-radius:12px;border:1px solid var(--line);font-weight:800;font-size:14px;transition:.2s;cursor:pointer}
+    .btn:hover{transform:translateY(-2px);border-color:#516050}.btn.primary{background:var(--accent);color:#10150c;border-color:var(--accent)} .btn.primary:hover{background:#c8ff64}
+    .btn.ghost{background:#111611}
+    .hero{padding:74px 0 70px}.heroGrid{display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center}
+    .eyebrow{display:inline-flex;padding:7px 11px;border:1px solid #34432f;border-radius:999px;color:var(--accent2);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#10170e}
+    h1{font-size:clamp(42px,6vw,76px);line-height:.98;letter-spacing:-.06em;margin:20px 0}
+    h1 em{font-style:normal;color:var(--accent)} .lead{font-size:18px;color:#b4beb6;max-width:650px}
+    .heroActions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 18px}.micro{color:#7f8a82;font-size:12px}
+    .heroImg{position:relative;border-radius:30px;overflow:hidden;border:1px solid #303a31;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .heroImg img{width:100%;height:590px;object-fit:cover}.heroTag{position:absolute;left:18px;bottom:18px;background:rgba(10,13,11,.82);backdrop-filter:blur(12px);border:1px solid #3a453b;border-radius:14px;padding:12px 14px;font-size:12px;color:#d8dfd9}
+    section{padding:74px 0}.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}
+    .kicker{color:var(--accent);font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase}.sectionHead h2{font-size:clamp(30px,4vw,46px);letter-spacing:-.05em;line-height:1.05;margin:8px 0 0}.sectionHead p{max-width:500px;color:var(--muted);margin:0}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:linear-gradient(145deg,#151b16,#0f130f);border:1px solid var(--line);border-radius:var(--radius);padding:25px;min-height:230px}.icon{width:44px;height:44px;border-radius:12px;background:#23301d;color:var(--accent);display:grid;place-items:center;font-weight:900;font-size:20px}.card h3{margin:20px 0 8px;font-size:20px}.card p{color:var(--muted);font-size:14px}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{padding:24px;border-top:1px solid #384238}.num{font-size:12px;color:var(--accent);font-weight:900}.step h3{margin:12px 0 7px}.step p{margin:0;color:var(--muted);font-size:14px}
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.price{background:#111611;border:1px solid var(--line);border-radius:var(--radius);padding:28px}.price.featured{border-color:#7a9c42;box-shadow:inset 0 1px 0 rgba(183,255,56,.18)}.price .label{font-size:12px;color:var(--accent);font-weight:900;text-transform:uppercase}.price h3{font-size:25px;margin:10px 0}.cost{font-size:30px;font-weight:900;margin:15px 0}.cost small{font-size:13px;color:var(--muted);font-weight:500}.price ul{list-style:none;padding:0;margin:20px 0}.price li{padding:8px 0;color:#b6c0b8;border-bottom:1px solid #202820;font-size:14px}.price li::before{content:"✓";color:var(--accent);font-weight:900;margin-right:9px}
+    .cta{border:1px solid #374632;border-radius:30px;padding:42px;background:radial-gradient(circle at 85% 20%,#26351d,transparent 35%),#111710;display:flex;align-items:center;justify-content:space-between;gap:30px}.cta h2{font-size:clamp(30px,4vw,50px);line-height:1;margin:0 0 12px;letter-spacing:-.05em}.cta p{color:var(--muted);margin:0;max-width:650px}.ctaActions{display:flex;flex-wrap:wrap;gap:10px}
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:15px}.contactBox{background:#111611;border:1px solid var(--line);border-radius:var(--radius);padding:28px}.contactBox h3{margin-top:0}.contactRow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid #222a23}.contactRow:last-child{border:0}.contactRow span{color:var(--muted);font-size:13px}.contactRow strong{font-size:14px;text-align:right}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:#778078;font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px}
+    .chatToggle{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;border:0;background:var(--accent);color:#111;z-index:50;font-size:23px;font-weight:900;box-shadow:0 10px 35px rgba(0,0,0,.4);cursor:pointer}
+    .chat{position:fixed;right:20px;bottom:90px;width:min(390px,calc(100% - 30px));height:530px;background:#101510;border:1px solid #354036;border-radius:22px;z-index:49;display:none;flex-direction:column;box-shadow:0 25px 80px rgba(0,0,0,.55);overflow:hidden}
+    .chat.open{display:flex}.chatHead{padding:16px 18px;border-bottom:1px solid #2b342d;display:flex;justify-content:space-between}.chatHead b{font-size:14px}.online{color:var(--accent);font-size:11px}.chatBody{flex:1;padding:16px;overflow:auto}.msg{max-width:85%;padding:11px 13px;border-radius:14px;margin:7px 0;font-size:13px}.bot{background:#1b221c;color:#dce4dd}.user{background:#b7ff38;color:#111;margin-left:auto}.quick{display:flex;flex-wrap:wrap;gap:7px;padding:10px 14px}.quick button{border:1px solid #39443b;background:#141a15;color:#c8d0ca;border-radius:999px;padding:7px 10px;font-size:11px;cursor:pointer}.chatForm{display:flex;gap:7px;padding:12px;border-top:1px solid #2b342d}.chatForm input{flex:1;background:#0c100d;border:1px solid #303a31;border-radius:10px;color:white;padding:11px;outline:none}.chatForm button{border:0;background:var(--accent);border-radius:10px;width:45px;font-weight:900}
+    @media(max-width:900px){.heroGrid,.contact{grid-template-columns:1fr}.heroImg img{height:420px}.cards{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(2,1fr)}.pricing{grid-template-columns:1fr}.links{display:none}.cta{display:block}.ctaActions{margin-top:25px}}
+    @media(max-width:560px){.wrap{width:min(var(--max),calc(100% - 22px))}.navcta .btn.ghost{display:none}.hero{padding-top:45px}.heroImg img{height:320px}.cards,.process{grid-template-columns:1fr}.card{min-height:0}.sectionHead{display:block}.sectionHead p{margin-top:15px}.cta{padding:28px}.foot{display:block}.foot div+div{margin-top:8px}}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap navin">
+      <a class="brand" href="#">BIKE<span>LAB</span></a>
+      <nav class="links">
+        <a href="#services">Услуги</a><a href="#process">Как работаем</a><a href="#prices">Форматы</a><a href="#contacts">Контакты</a>
+      </nav>
+      <div class="navcta"><a class="btn ghost" href="https://t.me/+SpzKmo1Z16syNmIy" target="_blank">Консультация</a><a class="btn primary" href="https://t.me/+YOs8HjJgr9hkMWZi" target="_blank">Собрать велосипед</a></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap heroGrid">
+        <div>
+          <span class="eyebrow">Удалённая веломастерская</span>
+          <h1>Соберём байк,<br><em>который работает.</em></h1>
+          <p class="lead">Подбор топового обвеса, бюджетный ремонт, апгрейд компонентов, диагностика и консультации — без лишней переплаты и случайных деталей.</p>
+          <div class="heroActions">
+            <a class="btn primary" href="https://t.me/+YOs8HjJgr9hkMWZi" target="_blank">🚲 Заказать сборку</a>
+            <a class="btn ghost" href="https://t.me/+SpzKmo1Z16syNmIy" target="_blank">💬 Задать вопрос</a>
+          </div>
+          <div class="micro">WhatsApp: <a href="https://wa.me/380631446701" target="_blank">+380 63 144 67 01</a> · Email: dimarioshell@gmail.com</div>
+        </div>
+        <div class="heroImg">
+          <img src="assets/bike.jpg" alt="Горный велосипед — пример проекта">
+          <div class="heroTag">Пример сборки · индивидуальный подбор компонентов</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div><div class="kicker">Что делаем</div><h2>От диагностики<br>до полного апгрейда</h2></div>
+          <p>Подбираем решение под задачу и бюджет. Можно работать полностью удалённо: фото, видео и список компонентов — дальше ведём вас по шагам.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="icon">01</div><h3>Топ-сборка</h3><p>Проектирование велосипеда с премиальным обвесом: трансмиссия, тормоза, колёса, подвеска и кокпит.</p></article>
+          <article class="card"><div class="icon">02</div><h3>Бюджетный ремонт</h3><p>Помогаем вернуть велосипед в рабочее состояние без замены всего подряд и без ненужных расходов.</p></article>
+          <article class="card"><div class="icon">03</div><h3>Апгрейд обвеса</h3><p>Определяем слабые места и меняем компоненты по приоритету: максимум эффекта за вложенный бюджет.</p></article>
+          <article class="card"><div class="icon">04</div><h3>Диагностика</h3><p>Разбираем симптомы по фото и видео: тормоза, трансмиссия, люфты, подвеска, колёса и совместимость деталей.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="wrap">
+        <div class="sectionHead"><div><div class="kicker">Процесс</div><h2>Просто. Понятно. По делу.</h2></div></div>
+        <div class="process">
+          <div class="step"><div class="num">ШАГ 01</div><h3>Заявка</h3><p>Пишете в Telegram или WhatsApp, описываете задачу и бюджет.</p></div>
+          <div class="step"><div class="num">ШАГ 02</div><h3>Диагностика</h3><p>Запрашиваем фото, видео и характеристики текущего велосипеда.</p></div>
+          <div class="step"><div class="num">ШАГ 03</div><h3>Спецификация</h3><p>Составляем список деталей, совместимость и несколько вариантов бюджета.</p></div>
+          <div class="step"><div class="num">ШАГ 04</div><h3>Сборка / план</h3><p>Вы получаете понятный план действий и сопровождение до результата.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prices">
+      <div class="wrap">
+        <div class="sectionHead"><div><div class="kicker">Форматы</div><h2>Выберите свой уровень</h2></div><p>Финальная стоимость зависит от задачи и комплектующих. Цена фиксируется после диагностики.</p></div>
+        <div class="pricing">
+          <article class="price"><div class="label">Старт</div><h3>Консультация</h3><div class="cost">Индивидуально</div><ul><li>Разбор задачи</li><li>Проверка совместимости</li><li>Рекомендации по бюджету</li><li>План апгрейда</li></ul><a class="btn ghost" href="https://t.me/+SpzKmo1Z16syNmIy" target="_blank">Получить консультацию</a></article>
+          <article class="price featured"><div class="label">Популярно</div><h3>Апгрейд</h3><div class="cost">Индивидуально</div><ul><li>Диагностика велосипеда</li><li>Приоритеты замен</li><li>Подбор компонентов</li><li>Сопровождение сборки</li></ul><a class="btn primary" href="https://t.me/+YOs8HjJgr9hkMWZi" target="_blank">Обсудить проект</a></article>
+          <article class="price"><div class="label">Pro</div><h3>Полная сборка</h3><div class="cost">Индивидуально</div><ul><li>Концепция велосипеда</li><li>Топовый обвес</li><li>Полная спецификация</li><li>Контроль совместимости</li></ul><a class="btn ghost" href="https://t.me/+YOs8HjJgr9hkMWZi" target="_blank">Заказать сборку</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta">
+          <div><h2>Есть велосипед или идея?</h2><p>Пришлите фото — подскажем, что оставить, что заменить и куда лучше вложить бюджет.</p></div>
+          <div class="ctaActions"><a class="btn primary" href="https://wa.me/380631446701" target="_blank">WhatsApp</a><a class="btn ghost" href="https://t.me/+SpzKmo1Z16syNmIy" target="_blank">Telegram</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <div class="wrap">
+        <div class="sectionHead"><div><div class="kicker">Контакты</div><h2>Свяжитесь удобным способом</h2></div></div>
+        <div class="contact">
+          <div class="contactBox">
+            <h3>Прямые контакты</h3>
+            <div class="contactRow"><span>WhatsApp</span><strong><a href="https://wa.me/380631446701" target="_blank">+380 63 144 67 01</a></strong></div>
+            <div class="contactRow"><span>Email</span><strong><a href="mailto:dimarioshell@gmail.com">dimarioshell@gmail.com</a></strong></div>
+            <div class="contactRow"><span>Telegram · сборка</span><strong><a href="https://t.me/+YOs8HjJgr9hkMWZi" target="_blank">Открыть чат</a></strong></div>
+            <div class="contactRow"><span>Telegram · консультация</span><strong><a href="https://t.me/+SpzKmo1Z16syNmIy" target="_blank">Открыть чат</a></strong></div>
+          </div>
+          <div class="contactBox">
+            <h3>LinkedIn</h3>
+            <p style="color:var(--muted)">Профиль BIKE LAB — профессиональные проекты, опыт и контакты.</p>
+            <div class="contactRow"><span>Профиль</span><strong><a href="https://www.linkedin.com/in/dimario-shell-006332387?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer">Открыть LinkedIn ↗</a></strong></div>
+            <p style="font-size:12px;color:#6f7b71">Файл <b>index.html</b> содержит все контактные ссылки и легко редактируется.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap foot"><div>© 2026 BIKE LAB. Сборка · ремонт · апгрейд.</div><div>Удалённая консультация по всему миру.</div></div></footer>
+
+  <button class="chatToggle" id="chatToggle" aria-label="Открыть AI-чат">✦</button>
+  <div class="chat" id="chat">
+    <div class="chatHead"><div><b>BIKE LAB AI</b><div class="online">● онлайн · демо-режим</div></div><button id="closeChat" style="background:none;border:0;color:#89948b;font-size:20px;cursor:pointer">×</button></div>
+    <div class="chatBody" id="chatBody"><div class="msg bot">Привет! Я AI-консультант BIKE LAB. Расскажи, что хочешь сделать с велосипедом: собрать, отремонтировать, диагностировать или прокачать обвес.</div></div>
+    <div class="quick">
+      <button data-q="Хочу собрать велосипед">Собрать велосипед</button>
+      <button data-q="Нужен бюджетный ремонт">Бюджетный ремонт</button>
+      <button data-q="Хочу апгрейд обвеса">Апгрейд</button>
+      <button data-q="Нужна диагностика">Диагностика</button>
+    </div>
+    <form class="chatForm" id="chatForm"><input id="chatInput" autocomplete="off" placeholder="Напишите вопрос…"><button>➤</button></form>
+  </div>
+
+<script>
+const chat=document.getElementById('chat'), body=document.getElementById('chatBody'), form=document.getElementById('chatForm'), input=document.getElementById('chatInput');
+document.getElementById('chatToggle').onclick=()=>chat.classList.toggle('open');
+document.getElementById('closeChat').onclick=()=>chat.classList.remove('open');
+document.querySelectorAll('.quick button').forEach(b=>b.onclick=()=>send(b.dataset.q));
+
+function answer(q){
+  const s=q.toLowerCase();
+  if(s.includes('собра')||s.includes('байк')) return 'Для сборки пришлите желаемый тип велосипеда, рост/вес райдера, стиль катания и бюджет. Для заказа сборки: Telegram → раздел «Сборка».';
+  if(s.includes('ремонт')) return 'Для бюджетного ремонта пришлите 3–5 фото и короткое видео проблемного места. Я помогу составить список необходимых работ без лишних замен.';
+  if(s.includes('апгрейд')||s.includes('обвес')) return 'Начнём с текущей комплектации. Пришлите фото велосипеда и компонентов + бюджет. Определим 1–3 апгрейда с максимальным эффектом.';
+  if(s.includes('диагн')) return 'Опишите симптом: скрип, люфт, плохое переключение, слабое торможение или другое. Фото/видео сильно ускорят диагностику.';
+  if(s.includes('цен')||s.includes('стоим')) return 'Стоимость рассчитывается индивидуально после диагностики и зависит от объёма работ и выбранных компонентов.';
+  if(s.includes('telegram')||s.includes('телеграм')) return 'Для сборки: t.me/+YOs8HjJgr9hkMWZi. Для консультации: t.me/+SpzKmo1Z16syNmIy.';
+  return 'Могу помочь с удалённой диагностикой, подбором обвеса, бюджетным ремонтом и полной сборкой. Напишите модель велосипеда и задачу.';
+}
+function add(text, cls){const d=document.createElement('div');d.className='msg '+cls;d.textContent=text;body.appendChild(d);body.scrollTop=body.scrollHeight;}
+function send(q){if(!q.trim())return; add(q,'user'); input.value=''; setTimeout(()=>add(answer(q),'bot'),250);}
+form.onsubmit=e=>{e.preventDefault();send(input.value)};
+</script>
+</body>
+</html>
